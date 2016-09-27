@@ -214,7 +214,7 @@ var Alki = {
   //parent
     var hourlySalesUlEl = document.getElementById('Alki');
 
-    for (var i this.locactionName = locactionName;= 0; i < hours.length; i++) {
+    for (var i = 0; i < hours.length; i++) {
     // creating the rows in the html
 
       var AlkiLi = document.createElement('li'); //created the li/node
@@ -231,20 +231,25 @@ Alki.render();
 
 var stores = [];
 
-function CookieLocation (locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust){
+function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust){
   this.locactionName = locactionName;
   this.minCustPerHour = minCustPerHour;
   this.maxCustPerHour = maxCustPerHour;
   this.avgCookiesperCust = avgCookiesperCust;
-  this.randCustomersPerHour = [];
-  this.avgCookiesPerHour = [];
-  this.totalDailyCookiesSales = 0,
+  this.randCustomersPerHour = [],
+  this.avgCookiesPerHour = [],
+  this.totalDailyCookiesSales = 0;
 
-
-
-}
-
-// firstandPike.calcRandCustomerPerHour();
-// console.log(firstandPike.randCustomersPerHour);
-// firstandPike.calcAvgCookiesPerHour();
-// console.log(firstandPike.avgCookiesPerHour);
+  calcRandCustomerPerHour = function () {
+    for (var i = 0; i < hours.length; i++) {
+      this.randCustomersPerHour.push(Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour);
+    }
+    this.calcAvgCookiesPerHour = function () {
+      this.calcRandCustomerPerHour();
+      for (var i = 0; i < hours.length; i++) {
+        this.avgCookiesPerHour.push(Math.ceil(this.randCustomersPerHour[i] * this.avgCookiesperCust));
+        this.totalDailyCookiesSales += this.avgCookiesPerHour[i];
+      };
+    };
+  };
+};
