@@ -22,20 +22,33 @@ var firstandPike = {
 
     }
   },
-};
 
+  render: function () {
+    this.calcRandCustomerPerHour();
+    this.calcAvgCookiesPerHour();
 
-
+    var wrapperEl = document.getElementById('wrapper'); //takes in all the shops onto one page, no need to edit each coffee shop name.
     //parent
-var hourlySalesUlEl = document.getElementById('firstandPike');
+    var hourlySalesUlEl = document.createElement('ul');
+    wrapperEl.appendChild(hourlySalesUlEl);
 
-for (var i = 0; i < hours.length; i++) {
-  // creating the rows in the html
-  var firstandPikeList = document.createElement('li'); //created the li
-  firstandPikeList.textContent = hours[i];
-  hourlySalesUlEl.appendChild(firstandPikeList);//attach child to parent
-}
 
+    for (var i = 0; i < hours.length; i++) {
+      // creating the rows in the html
+
+      var firstandPikeList = document.createElement('li'); //created the li/node
+      firstandPikeList.textContent = hours[i];//display the hours and ...
+      hourlySalesUlEl.appendChild(firstandPikeList);//attach child to parent
+
+      var column2 = document.createElement('ul');
+      column2.textContent = this.calcRandCustomerPerHour[i];
+      hourlySalesUlEl.appendChild(column2);
+    }
+
+
+  }
+};
+firstandPike.render();
 
 
 // firstandPike.calcRandCustomerPerHour();
