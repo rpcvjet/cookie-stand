@@ -24,7 +24,21 @@ var firstandPike = {
   },
 };
 
-firstandPike.calcRandCustomerPerHour();
-console.log(firstandPike.randCustomersPerHour);
-firstandPike.calcAvgCookiesPerHour();
-console.log(firstandPike.avgCookiesPerHour);
+
+
+    //parent
+var hourlySalesUlEl = document.getElementById('firstandPike');
+
+for (var i = 0; i < hours.length; i++) {
+  // creating the rows in the html
+  var firstandPikeList = document.createElement('li'); //created the li
+  firstandPikeList.textContent = hours[i];
+  hourlySalesUlEl.appendChild(firstandPikeList);//attach child to parent
+}
+
+
+
+// firstandPike.calcRandCustomerPerHour();
+// console.log(firstandPike.randCustomersPerHour);
+// firstandPike.calcAvgCookiesPerHour();
+// console.log(firstandPike.avgCookiesPerHour);
