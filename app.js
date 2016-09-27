@@ -214,7 +214,7 @@ var Alki = {
   //parent
     var hourlySalesUlEl = document.getElementById('Alki');
 
-    for (var i = 0; i < hours.length; i++) {
+    for (var i this.locactionName = locactionName;= 0; i < hours.length; i++) {
     // creating the rows in the html
 
       var AlkiLi = document.createElement('li'); //created the li/node
@@ -229,7 +229,20 @@ var Alki = {
 };
 Alki.render();
 
+var stores = [];
 
+function CookieLocation (locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust){
+  this.locactionName = locactionName;
+  this.minCustPerHour = minCustPerHour;
+  this.maxCustPerHour = maxCustPerHour;
+  this.avgCookiesperCust = avgCookiesperCust;
+  this.randCustomersPerHour = [];
+  this.avgCookiesPerHour = [];
+  this.totalDailyCookiesSales = 0,
+
+
+
+}
 
 // firstandPike.calcRandCustomerPerHour();
 // console.log(firstandPike.randCustomersPerHour);
