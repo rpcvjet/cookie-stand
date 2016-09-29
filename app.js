@@ -2,6 +2,15 @@
 
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
+var table = document.getElementById('salestable');
+
+var stores = [];
+var firstandPike = new Cookielocation('First and Pike', 23,65, 6.3);
+var SeaTac = new Cookielocation('SeaTac', 3, 24, 1.2);
+var seattleCenter = new Cookielocation('Seattle Center', 11, 38, 3.7);
+var capitalHill = new Cookielocation('Capital Hill', 20, 38, 2.3);
+var alki = new Cookielocation('Alki', 2, 16, 4.6);
+
 function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust){
   this.locactionName = locactionName;
   this.minCustPerHour = minCustPerHour;
@@ -11,9 +20,8 @@ function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCooki
   this.avgCookiesPerHour = [],
   this.totalDailyCookiesSales = 0;
 
-  var allLocations = []
+  var allLocations = [];
 
-  var table = document.getElementById('salestable');
 
   this.calcRandCustomerPerHour = function () {
     for (var i = 0; i < hours.length; i++) {
@@ -29,17 +37,6 @@ function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCooki
     };
   };
 
-  var stores = [];
-  var firstandPike = new Cookielocation('First and Pike', 23,65, 6.3);
-  var SeaTac = new Cookielocation('SeaTac', 3, 24, 1.2);
-  var seattleCenter = new Cookielocation('Seattle Center', 11, 38, 3.7);
-  var capitalHill = new Cookielocation('Capital Hill', 20, 38, 2.3);
-  var alki = new Cookielocation('Alki', 2, 16, 4.6);
-
-
-
-
-
 
   this.render = function () {
     var trEl = document.createElement('tr');
@@ -54,12 +51,10 @@ function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCooki
       headerTd.textContent = this.avgCookiesPerHour[i];
       trEl.appendChild(headerTd);
     }
+
   };
   stores.push(this);
 }
-
-
-
 
 function header () {
   var emptyTh = document.createElement('th');
