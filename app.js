@@ -11,7 +11,7 @@ function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCooki
   this.avgCookiesPerHour = [],
   this.totalDailyCookiesSales = 0;
 
-  var allLocations = []
+  var allLocations = [];
 
   var table = document.getElementById('salestable');
 
@@ -36,11 +36,6 @@ function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCooki
   var capitalHill = new Cookielocation('Capital Hill', 20, 38, 2.3);
   var alki = new Cookielocation('Alki', 2, 16, 4.6);
 
-
-
-
-
-
   this.render = function () {
     var trEl = document.createElement('tr');
     var ThEl = document.createElement('th');
@@ -58,9 +53,6 @@ function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCooki
   stores.push(this);
 }
 
-
-
-
 function header () {
   var emptyTh = document.createElement('th');
   table.appendChild(emptyTh);
@@ -75,3 +67,5 @@ header();
 for (var i = 0; i < stores.length; i++) {
   stores[i].render();
 }
+
+var dataform = document.createElement('dataform');
