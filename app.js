@@ -11,6 +11,10 @@ function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCooki
   this.avgCookiesPerHour = [],
   this.totalDailyCookiesSales = 0;
 
+  var allLocations = []
+
+  var table = document.getElementById('salestable');
+
   this.calcRandCustomerPerHour = function () {
     for (var i = 0; i < hours.length; i++) {
       this.randCustomersPerHour.push(Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour);
@@ -24,6 +28,19 @@ function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCooki
       this.totalDailyCookiesSales += this.avgCookiesPerHour[i];
     };
   };
+
+  var stores = [];
+  var firstandPike = new Cookielocation('First and Pike', 23,65, 6.3);
+  var SeaTac = new Cookielocation('SeaTac', 3, 24, 1.2);
+  var seattleCenter = new Cookielocation('Seattle Center', 11, 38, 3.7);
+  var capitalHill = new Cookielocation('Capital Hill', 20, 38, 2.3);
+  var alki = new Cookielocation('Alki', 2, 16, 4.6);
+
+
+
+
+
+
   this.render = function () {
     var trEl = document.createElement('tr');
     var ThEl = document.createElement('th');
@@ -41,14 +58,8 @@ function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCooki
   stores.push(this);
 }
 
-var table = document.getElementById('dolly');
 
-var stores = [];
-var firstandPike = new Cookielocation('First and Pike', 23,65, 6.3);
-var SeaTac = new Cookielocation('SeaTac', 3, 24, 1.2);
-var seattleCenter = new Cookielocation('Seattle Center', 11, 38, 3.7);
-var capitalHill = new Cookielocation('Capital Hill', 20, 38, 2.3);
-var alki = new Cookielocation('Alki', 2, 16, 4.6);
+
 
 function header () {
   var emptyTh = document.createElement('th');
