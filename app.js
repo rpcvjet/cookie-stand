@@ -92,3 +92,15 @@ makeHeaderRow();
 for (var i = 0; i < stores.length; i++) {
   stores[i].render();
 }
+
+var salesDataForm = document.getElementById('locationdataform');
+
+var createNewStore = function (locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust) {
+  this.locactionName = locactionName;
+  this.minCustPerHour = minCustPerHour;
+  this.maxCustPerHour = maxCustPerHour;
+  this.avgCookiesperCust = avgCookiesperCust;
+  this.randCustomersPerHour = [],
+  this.totalCookiesPerCust = [],
+  this.totalDailyCookiesSales = 0;
+};
