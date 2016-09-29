@@ -3,13 +3,16 @@ var table = document.getElementById('salestable');
 
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
+
+
 function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust){
   this.locactionName = locactionName;
   this.minCustPerHour = minCustPerHour;
   this.maxCustPerHour = maxCustPerHour;
   this.avgCookiesperCust = avgCookiesperCust;
   this.randCustomersPerHour = [],
-  this.avgCookiesPerHour = [],
+  this.totalCookiesPerCust
+   = [],
   this.totalDailyCookiesSales = 0;
 
   this.calcRandCustomerPerHour = function () {
@@ -21,8 +24,10 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
   this.calcAvgCookiesPerHour = function () {
     this.calcRandCustomerPerHour();
     for (var i = 0; i < hours.length; i++) {
-      this.avgCookiesPerHour.push(Math.ceil(this.randCustomersPerHour[i] * this.avgCookiesperCust));
-      this.totalDailyCookiesSales += this.avgCookiesPerHour[i];
+      this.totalCookiesPerCust
+      .push(Math.ceil(this.randCustomersPerHour[i] * this.avgCookiesperCust));
+      this.totalDailyCookiesSales += this.totalCookiesPerCust
+      [i];
     };
   };
 
@@ -31,27 +36,36 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
 
     var headerCell = document.createElement('td');
     headerCell.textContent = this.locactionName;
-    elementRow.appendChild(headerCell);
-    this.calcAvgCookiesPerHour();
+    storesTr.appendChild(headerCell);
+
+
     console.log('we are in the rendor method');
 
     table.appendChild(storesTr);
+    this.calcAvgCookiesPerHour();
 
     for (var i = 0; i < hours.length; i++) {
-      var headerCell = document.createElement('td');
-      headerCell.textContent = this.calcAvgCookiesPerHour[i];
-      elementRow.appendChild(headerCell);
+      var hourlyDataCells = document.createElement('td');
+      hourlyDataCells.textContent = this.totalCookiesPerCust
+      [i];
+      storesTr.appendChild(hourlyDataCells);
     }
-    var elementRow = document.createElement('td');
-    headerCell.textContent = totalDailyCookiesSales;
-    elementRow.appendChild(headerCell);
+    var lastcolumnTotals = document.createElement('td');
+    lastcolumnTotals.textContent = this.totalDailyCookiesSales;
+    storesTr.appendChild(lastcolumnTotals);
   };
 
   stores.push(this);
 };
+var stores = [];
+
+var firstandPike = new Cookielocation('First and Pike', 23,65, 6.3);
+var SeaTac = new Cookielocation('SeaTac', 3, 24, 1.2);
+var seattleCenter = new Cookielocation('Seattle Center', 11, 38, 3.7);
+var capitalHill = new Cookielocation('Capital Hill', 20, 38, 2.3);
+var alki = new Cookielocation('Alki', 2, 16, 4.6);
 
   //defining actions
-
 
 function makeHeaderRow() {
   var elementRow = document.createElement('tr');
@@ -72,19 +86,9 @@ function makeHeaderRow() {
 // attaching it to the document
   table.appendChild(elementRow);
 }
+// execute the header code
 makeHeaderRow();
-
-
-var stores = [];
-
-var firstandPike = new Cookielocation('First and Pike', 23,65, 6.3);
-var SeaTac = new Cookielocation('SeaTac', 3, 24, 1.2);
-var seattleCenter = new Cookielocation('Seattle Center', 11, 38, 3.7);
-var capitalHill = new Cookielocation('Capital Hill', 20, 38, 2.3);
-var alki = new Cookielocation('Alki', 2, 16, 4.6);
-
-
-
+//execute the render code in a loop fashion
 for (var i = 0; i < stores.length; i++) {
   stores[i].render();
 }
