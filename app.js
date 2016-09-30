@@ -3,7 +3,6 @@ var table = document.getElementById('salestable');
 
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-<<<<<<< HEAD
 var table = document.getElementById('salestable');
 
 var stores = [];
@@ -13,8 +12,6 @@ var seattleCenter = new Cookielocation('Seattle Center', 11, 38, 3.7);
 var capitalHill = new Cookielocation('Capital Hill', 20, 38, 2.3);
 var alki = new Cookielocation('Alki', 2, 16, 4.6);
 
-=======
->>>>>>> master
 function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust){
   this.locactionName = locactionName;
   this.minCustPerHour = minCustPerHour;
@@ -25,11 +22,7 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
    = [],
   this.totalDailyCookiesSales = 0;
 
-<<<<<<< HEAD
-    var allLocations = [];
-=======
   var table = document.getElementById('salestable');
->>>>>>> master
 
   this.calcRandCustomerPerHour = function () {
     for (var i = 0; i < hours.length; i++) {
@@ -49,23 +42,20 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
   };
 
   this.render = function () {
-<<<<<<< HEAD
+
     var trEl = document.createElement('tr');
     var ThEl = document.createElement('th');
     ThEl.textContent = this.locactionName;
     trEl.appendChild(ThEl);
-=======
+
     var storesTr = document.createElement('tr');
 
     var headerCell = document.createElement('td');
     headerCell.textContent = this.locactionName;
     storesTr.appendChild(headerCell);
 
-
-    console.log('we are in the rendor method');
-
     table.appendChild(storesTr);
->>>>>>> master
+
     this.calcAvgCookiesPerHour();
 
     for (var i = 0; i < hours.length; i++) {
@@ -76,22 +66,18 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
     }
     var lastcolumnTotals = document.createElement('td');
     lastcolumnTotals.textContent = this.totalDailyCookiesSales;
-<<<<<<< HEAD
+
     trEl.appendChild(lastcolumnTotals);
-=======
-    storesTr.appendChild(lastcolumnTotals);
->>>>>>> master
   };
 
   stores.push(this);
 };
 var stores = [];
 
-<<<<<<< HEAD
 function header () {
   var emptyTh = document.createElement('th');
   table.appendChild(emptyTh);
-=======
+
 var firstandPike = new Cookielocation('First and Pike', 23,65, 6.3);
 var SeaTac = new Cookielocation('SeaTac', 3, 24, 1.2);
 var seattleCenter = new Cookielocation('Seattle Center', 11, 38, 3.7);
@@ -107,20 +93,18 @@ function makeHeaderRow() {
   headerCell.textContent = 'Locations';
   elementRow.appendChild(headerCell);
 
->>>>>>> master
+
   for (var i = 0; i < hours.length; i++) {
     var headerCell = document.createElement('th');
     headerCell.textContent = hours[i];
     elementRow.appendChild(headerCell);
   }
-<<<<<<< HEAD
+
   var rowTotals = document.createElement('td');
   rowTotals.textContent = 'Totals';
   table.appendChild(rowTotals);
-
 }
-header();
-=======
+
   var headerCell = document.createElement('td');
   headerCell.textContent = 'Totals';
   elementRow.appendChild(headerCell);
@@ -131,7 +115,6 @@ header();
 // execute the header code
 makeHeaderRow();
 //execute the render code in a loop fashion
->>>>>>> master
 for (var i = 0; i < stores.length; i++) {
   stores[i].render();
 }
