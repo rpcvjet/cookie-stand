@@ -89,12 +89,10 @@ function startTheNewFormLocationTransferProcess(event) {
   var valueForLocation = event.target.elements.location.value;
   var valueForTotalCookiesperCust = event.target.elements.avgCookiesperCust.value;
 
+  theBrandNewCookieStore(valueForMaxCustPerHour, valueForMinCustPerHour, valueForLocation, valueForTotalCookiesperCust);
 }
 
-function theBrandNewCookieStore (locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust);
-
-theBrandNewCookieStore();
+function theBrandNewCookieStore(maxCustPerHour,minCustPerHour, locactionName, avgCookiesperCust) {
 
 
-//3rd step. Need to get values from inputs
-// //4th. Make new cookie store from values in 3rd step
+}
