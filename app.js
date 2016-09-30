@@ -9,8 +9,7 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
   this.maxCustPerHour = maxCustPerHour;
   this.avgCookiesperCust = avgCookiesperCust;
   this.randCustomersPerHour = [],
-  this.totalCookiesPerCust
-   = [],
+  this.totalCookiesPerCust = [],
   this.totalDailyCookiesSales = 0;
 
   var table = document.getElementById('salestable');
@@ -27,8 +26,7 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
 
       this.totalCookiesPerCust
       .push(Math.ceil(this.randCustomersPerHour[i] * this.avgCookiesperCust));
-      this.totalDailyCookiesSales += this.totalCookiesPerCust
-      [i];
+      this.totalDailyCookiesSales += this.totalCookiesPerCust[i];
     };
   };
 
@@ -38,9 +36,6 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
     var headerCell = document.createElement('td');
     headerCell.textContent = this.locactionName;
     storesTr.appendChild(headerCell);
-
-
-    console.log('we are in the rendor method');
 
     table.appendChild(storesTr);
     this.calcAvgCookiesPerHour();
@@ -92,4 +87,44 @@ makeHeaderRow();
 //execute the render code in a loop fashion
 for (var i = 0; i < stores.length; i++) {
   stores[i].render();
+}
+
+//  ****************************Start of Data Entry Form
+//1st step. Need to attach Html to JS via tagID
+var newLocationForm = document.getElementById('locationdataform');
+
+
+//2nd step. Need to have a way to get values form inputs
+newLocationForm.addEventListener('submit', startTheNewFormLocationTransferProcess); //(button name, name of function that gets values)
+var mustBeaLetter = /^[a-zA-Z]+$/;
+function startTheNewFormLocationTransferProcess(event) {
+  event.preventDefault();
+
+  if ( event.target.elements.maxCustPerHour.value > event.target.elements.minCustPerHour.value){
+      return alert ("Minimum value must be smaller than Maximum value!");
+
+  }
+
+  if (!event.target.elements.minCustPerHour.value || !event.target.elements.maxCustPerHour.value || !event.target.elements.avgCookiesperCust.value || event.target.elements.locationName.value == null ) {
+    return alert ("Please enter valid data!")
+  }
+
+
+  var valueForLocation = event.target.elements.locationName.value;
+  var valueForMinCustPerHour = event.target.elements.minCustPerHour.value;
+  var valueForMaxCustPerHour = event.target.elements.maxCustPerHour.value;
+  var valueforavgCookierPerCust = event.target.elements.avgCookiesperCust.value;
+  console.log(valueForMaxCustPerHour);
+
+  var newLocation = new Cookielocation(valueForLocation, valueForMinCustPerHour, valueForMaxCustPerHour, valueforavgCookierPerCust);
+
+
+  // Kills the table above
+  table.innerHTML = '';
+
+  //prints the page
+  makeHeaderRow();
+  for (var i = 0; i < stores.length; i++) {
+    stores[i].render();
+  }
 }
