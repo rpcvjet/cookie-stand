@@ -20,7 +20,7 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
   this.avgCookiesPerHour = [],
   this.totalDailyCookiesSales = 0;
 
-  var allLocations = [];
+    var allLocations = [];
 
   this.calcRandCustomerPerHour = function () {
     for (var i = 0; i < hours.length; i++) {
@@ -87,6 +87,18 @@ function startTheNewFormLocationTransferProcess(event) {
   var valueForMaxCustPerHour = event.target.elements.maxCustPerHour.value;
   var valueForMinCustPerHour = event.target.elements.minCustPerHour.value;
   var valueForLocation = event.target.elements.location.value;
-  var valueForTotalCookiesperCust = event.target.elements.avgCookiesperCust.value;
+  var valueforavgCookierPerCust = event.target.elements.avgCookiesperCust.value;
+
+
+  var newLocation = new Cookielocation(valueForLocation, valueForMinCustPerHour, valueForMaxCustPerHour, valueforavgCookierPerCust);
+  console.log(newLocation);
+
+  // Kills the table above
+  table.innerHTML = '';
+
+  //prints the page
+  header();
+  for (var i = 0; i < stores.length; i++) {
+    stores[i].render();
+  }
 }
-new Cookielocation.render();
