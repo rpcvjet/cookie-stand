@@ -88,11 +88,5 @@ function startTheNewFormLocationTransferProcess(event) {
   var valueForMinCustPerHour = event.target.elements.minCustPerHour.value;
   var valueForLocation = event.target.elements.location.value;
   var valueForTotalCookiesperCust = event.target.elements.avgCookiesperCust.value;
-
-  theBrandNewCookieStore(valueForMaxCustPerHour, valueForMinCustPerHour, valueForLocation, valueForTotalCookiesperCust);
 }
-
-function theBrandNewCookieStore(maxCustPerHour,minCustPerHour, locactionName, avgCookiesperCust) {
-
-
-}
+new Cookielocation.render();
