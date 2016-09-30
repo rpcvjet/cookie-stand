@@ -11,7 +11,7 @@ var seattleCenter = new Cookielocation('Seattle Center', 11, 38, 3.7);
 var capitalHill = new Cookielocation('Capital Hill', 20, 38, 2.3);
 var alki = new Cookielocation('Alki', 2, 16, 4.6);
 
-function Cookielocation (locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust){
+function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust){
   this.locactionName = locactionName;
   this.minCustPerHour = minCustPerHour;
   this.maxCustPerHour = maxCustPerHour;
@@ -69,8 +69,32 @@ function header () {
   table.appendChild(rowTotals);
 
 }
-
 header();
 for (var i = 0; i < stores.length; i++) {
   stores[i].render();
 }
+//  ****************************Start of Data Entry Form
+
+//1st step. Need to attach Html to JS via tagID
+var newLocationForm = document.getElementById('datacollectionform');
+
+
+//2nd step. Need to have a way to get values form inputs
+newLocationForm.addEventListener('submit', startTheNewFormLocationTransferProcess);
+
+function startTheNewFormLocationTransferProcess(event) {
+  event.preventDefault();
+  var valueForMaxCustPerHour = event.target.elements.maxCustPerHour.value;
+  var valueForMinCustPerHour = event.target.elements.minCustPerHour.value;
+  var valueForLocation = event.target.elements.location.value;
+  var valueForTotalCookiesperCust = event.target.elements.avgCookiesperCust.value;
+
+}
+
+function theBrandNewCookieStore (locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust);
+
+theBrandNewCookieStore();
+
+
+//3rd step. Need to get values from inputs
+// //4th. Make new cookie store from values in 3rd step
