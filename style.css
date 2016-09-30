@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-
-label{
-   display: block;
-
-=======
 #salesdata {
   outline: 1px solid red;
 
@@ -11,5 +5,4 @@ label{
 
 label {
    display: block;
->>>>>>> master
 }

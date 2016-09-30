@@ -3,23 +3,13 @@ var table = document.getElementById('salestable');
 
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-var table = document.getElementById('salestable');
-
-var stores = [];
-var firstandPike = new Cookielocation('First and Pike', 23,65, 6.3);
-var SeaTac = new Cookielocation('SeaTac', 3, 24, 1.2);
-var seattleCenter = new Cookielocation('Seattle Center', 11, 38, 3.7);
-var capitalHill = new Cookielocation('Capital Hill', 20, 38, 2.3);
-var alki = new Cookielocation('Alki', 2, 16, 4.6);
-
 function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookiesperCust){
   this.locactionName = locactionName;
   this.minCustPerHour = minCustPerHour;
   this.maxCustPerHour = maxCustPerHour;
   this.avgCookiesperCust = avgCookiesperCust;
   this.randCustomersPerHour = [],
-  this.totalCookiesPerCust
-   = [],
+  this.totalCookiesPerCust = [],
   this.totalDailyCookiesSales = 0;
 
   var table = document.getElementById('salestable');
@@ -36,18 +26,11 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
 
       this.totalCookiesPerCust
       .push(Math.ceil(this.randCustomersPerHour[i] * this.avgCookiesperCust));
-      this.totalDailyCookiesSales += this.totalCookiesPerCust
-      [i];
+      this.totalDailyCookiesSales += this.totalCookiesPerCust[i];
     };
   };
 
   this.render = function () {
-
-    var trEl = document.createElement('tr');
-    var ThEl = document.createElement('th');
-    ThEl.textContent = this.locactionName;
-    trEl.appendChild(ThEl);
-
     var storesTr = document.createElement('tr');
 
     var headerCell = document.createElement('td');
@@ -55,7 +38,6 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
     storesTr.appendChild(headerCell);
 
     table.appendChild(storesTr);
-
     this.calcAvgCookiesPerHour();
 
     for (var i = 0; i < hours.length; i++) {
@@ -66,17 +48,12 @@ function Cookielocation(locactionName, minCustPerHour, maxCustPerHour, avgCookie
     }
     var lastcolumnTotals = document.createElement('td');
     lastcolumnTotals.textContent = this.totalDailyCookiesSales;
-
-    trEl.appendChild(lastcolumnTotals);
+    storesTr.appendChild(lastcolumnTotals);
   };
 
   stores.push(this);
 };
 var stores = [];
-
-function header () {
-  var emptyTh = document.createElement('th');
-  table.appendChild(emptyTh);
 
 var firstandPike = new Cookielocation('First and Pike', 23,65, 6.3);
 var SeaTac = new Cookielocation('SeaTac', 3, 24, 1.2);
@@ -93,18 +70,11 @@ function makeHeaderRow() {
   headerCell.textContent = 'Locations';
   elementRow.appendChild(headerCell);
 
-
   for (var i = 0; i < hours.length; i++) {
     var headerCell = document.createElement('th');
     headerCell.textContent = hours[i];
     elementRow.appendChild(headerCell);
   }
-
-  var rowTotals = document.createElement('td');
-  rowTotals.textContent = 'Totals';
-  table.appendChild(rowTotals);
-}
-
   var headerCell = document.createElement('td');
   headerCell.textContent = 'Totals';
   elementRow.appendChild(headerCell);
@@ -118,31 +88,42 @@ makeHeaderRow();
 for (var i = 0; i < stores.length; i++) {
   stores[i].render();
 }
-//  ****************************Start of Data Entry Form
 
+//  ****************************Start of Data Entry Form
 //1st step. Need to attach Html to JS via tagID
-var newLocationForm = document.getElementById('datacollectionform');
+var newLocationForm = document.getElementById('locationdataform');
 
 
 //2nd step. Need to have a way to get values form inputs
-newLocationForm.addEventListener('submit', startTheNewFormLocationTransferProcess);
-
+newLocationForm.addEventListener('submit', startTheNewFormLocationTransferProcess); //(button name, name of function that gets values)
+var mustBeaLetter = /^[a-zA-Z]+$/;
 function startTheNewFormLocationTransferProcess(event) {
   event.preventDefault();
-  var valueForMaxCustPerHour = event.target.elements.maxCustPerHour.value;
-  var valueForMinCustPerHour = event.target.elements.minCustPerHour.value;
-  var valueForLocation = event.target.elements.location.value;
-  var valueforavgCookierPerCust = event.target.elements.avgCookiesperCust.value;
 
+  if ( event.target.elements.maxCustPerHour.value > event.target.elements.minCustPerHour.value){
+      return alert ("Minimum value must be smaller than Maximum value!");
+
+  }
+
+  if (!event.target.elements.minCustPerHour.value || !event.target.elements.maxCustPerHour.value || !event.target.elements.avgCookiesperCust.value || event.target.elements.locationName.value == null ) {
+    return alert ("Please enter valid data!")
+  }
+
+
+  var valueForLocation = event.target.elements.locationName.value;
+  var valueForMinCustPerHour = event.target.elements.minCustPerHour.value;
+  var valueForMaxCustPerHour = event.target.elements.maxCustPerHour.value;
+  var valueforavgCookierPerCust = event.target.elements.avgCookiesperCust.value;
+  console.log(valueForMaxCustPerHour);
 
   var newLocation = new Cookielocation(valueForLocation, valueForMinCustPerHour, valueForMaxCustPerHour, valueforavgCookierPerCust);
-  console.log(newLocation);
+
 
   // Kills the table above
   table.innerHTML = '';
 
   //prints the page
-  header();
+  makeHeaderRow();
   for (var i = 0; i < stores.length; i++) {
     stores[i].render();
   }
