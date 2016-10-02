@@ -100,11 +100,9 @@ var mustBeaLetter = /^[a-zA-Z]+$/;
 function startTheNewFormLocationTransferProcess(event) {
   event.preventDefault();
 
-
     if ( event.target.elements.maxCustPerHour.value > event.target.elements.minCustPerHour.value){
-        return alert ("Minimum value must be smaller than Maximum value!");
-
-    }
+      return alert ("Minimum value must be smaller than Maximum value!");
+}
 
     if (!event.target.elements.minCustPerHour.value || !event.target.elements.maxCustPerHour.value || !event.target.elements.avgCookiesperCust.value || !event.target.elements.locationName.value == null ) {
       return alert ("Please enter valid data!")
