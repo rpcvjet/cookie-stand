@@ -3,6 +3,10 @@ body{
  padding: 0;
 
 }
+ul{
+  list-style-type: none;
+  list-style: none;
+}
 
 h1 h2{
   position: fixed;
