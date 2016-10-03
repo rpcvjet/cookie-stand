@@ -8,7 +8,7 @@ h1 {
 }
 
 table, th, td {
-  margin-left: 280px;
+  margin-left: 310px;
   border: 1px solid black;
 }
 
@@ -19,4 +19,13 @@ text-align: -webkit-center;
 
 label {
    display: block;
+}
+
+button {
+  margin-top: 15px;
+}
+
+fieldset {
+  height: 150px;
+  display: flex;
 }
