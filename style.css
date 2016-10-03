@@ -1,6 +1,20 @@
-#salesdata {
-  outline: 1px solid red;
+body {
+  background-color: #AA7139;
 
+}
+
+h1 {
+  text-align: center;
+}
+
+table, th, td {
+  margin-left: 280px;
+  border: 1px solid black;
+}
+
+#locationdataform{
+margin-top: 50px;
+text-align: -webkit-center;
 }
 
 label {
